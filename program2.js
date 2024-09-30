@@ -2,34 +2,28 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) {
-    const romanValues = {
-        '':0,
-        'III': 3,
-        'LVIII': 58,
-        'MCMXCIV': 1994,
+function romanToInt(s) {
+    const romanMap = {
+        'I': 1,
+        'V': 5,
         'X': 10,
-        'IV': 4,
-        'IX': 9,
-        'MMMCMXCIX': 3999
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
     };
-    
-    let result = 0;
-    
+
+    let total = 0;
     for (let i = 0; i < s.length; i++) {
-        const currentValue = romanValues[s[i]];
-        const nextValue = romanValues[s[i + 1]];
-        
-        if (nextValue > currentValue) {
-            result += nextValue - currentValue;
-            i++;
+        let currentVal = romanMap[s[i]];
+        if (i < s.length - 1 && currentVal < romanMap[s[i + 1]]) {
+            total -= currentVal;
         } else {
-            result += currentValue;
+            total += currentVal;
         }
     }
-    
-    return result;
-};
 
+    return total;
+}
 
-module.exports={romanToInt}
+module.exports = { romanToInt };
