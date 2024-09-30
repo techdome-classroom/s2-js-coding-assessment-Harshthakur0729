@@ -26,4 +26,4 @@ function romanToInt(s) {
     return total;
 }
 
-module.exports = { romanToInt };
+module.exports ={ romanToInt };
